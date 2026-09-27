@@ -79,14 +79,6 @@ Execute:
 Get-CimInstance Win32_OperatingSystem | Select-Object Caption, Version, OSArchitecture
 ```
 
-Procure uma arquitetura de 64 bits.
-
-Também podemos consultar o processador:
-
-```powershell
-Get-CimInstance Win32_Processor | Select-Object Name, AddressWidth, VirtualizationFirmwareEnabled
-```
-
 Para este laboratório esperamos uma arquitetura de:
 
 ```text
