@@ -97,18 +97,6 @@ AMD64 também é utilizado para computadores x86-64 com processadores Intel.
 
 # 3. Verificar a virtualização
 
-No resultado do comando anterior, observe:
-
-```text
-VirtualizationFirmwareEnabled
-```
-
-Quando disponível, esperamos:
-
-```text
-True
-```
-
 Também é possível conferir a virtualização pelo:
 
 ```text
