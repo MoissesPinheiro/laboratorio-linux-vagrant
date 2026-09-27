@@ -95,27 +95,49 @@ OSArchitecture
 Exemplo:
 
 ```text
-Microsoft Windows 10 Pro
-10.0.19045
-64 bits
+Caption                   Version     OSArchitecture
+-------                   -------     --------------
+Microsoft Windows 10 Pro  10.0.19045  64 bits
 ```
 
 Observe principalmente a arquitetura apresentada pelo sistema.
 
 Durante o download das ferramentas, escolha sempre a opção disponibilizada oficialmente para o seu sistema operacional e para a sua arquitetura.
 
-Termos como:
+Alguns termos que podem aparecer nas páginas de download são:
 
 ```text
-64 bits
 x64
 AMD64
+i686
 ARM64
 ```
 
-podem aparecer nas páginas de download.
+Para computadores Windows x86 de 64 bits, a opção normalmente utilizada é:
 
-Não escolha uma arquitetura diferente da suportada pelo seu computador.
+```text
+AMD64
+```
+
+O termo `AMD64` também é utilizado em computadores com processadores Intel compatíveis com a arquitetura x86-64.
+
+A opção:
+
+```text
+i686
+```
+
+corresponde à arquitetura x86 de 32 bits.
+
+A opção:
+
+```text
+ARM64
+```
+
+é destinada a computadores baseados em arquitetura ARM de 64 bits.
+
+Escolha sempre o pacote correspondente à arquitetura do seu computador.
 
 ---
 
@@ -161,13 +183,13 @@ no menu Iniciar do Windows.
 
 Se o programa estiver instalado, abra-o e confirme se a interface inicia normalmente.
 
-Também podemos verificar a versão utilizando o PowerShell:
+Também podemos verificar a versão pelo PowerShell:
 
 ```powershell
 & "$env:ProgramFiles\Oracle\VirtualBox\VBoxManage.exe" --version
 ```
 
-Se uma versão for apresentada, o VirtualBox foi localizado nesse caminho.
+Se uma versão for apresentada, o VirtualBox foi localizado corretamente.
 
 Exemplo:
 
@@ -179,13 +201,9 @@ O número exato poderá ser diferente.
 
 ## Se o VirtualBox não estiver instalado
 
-Acesse a página oficial de downloads do VirtualBox:
+Acesse a página oficial:
 
-```text
-virtualbox.org
-```
-
-Procure a seção de downloads.
+[Download do VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 
 Escolha o instalador correspondente ao sistema operacional e à arquitetura suportada pelo seu computador.
 
@@ -193,9 +211,9 @@ Faça o download e execute o instalador.
 
 Conclua a instalação seguindo as instruções apresentadas pelo próprio instalador.
 
-Depois da instalação, abra novamente o VirtualBox e confirme se o programa inicia normalmente.
+Depois da instalação, abra o VirtualBox e confirme se o programa inicia normalmente.
 
-Volte ao PowerShell e verifique novamente:
+Volte ao PowerShell e execute novamente:
 
 ```powershell
 & "$env:ProgramFiles\Oracle\VirtualBox\VBoxManage.exe" --version
@@ -215,7 +233,7 @@ No PowerShell, execute:
 vagrant --version
 ```
 
-Se uma versão for apresentada, o Vagrant já está instalado.
+Se uma versão for apresentada, o Vagrant já está instalado e reconhecido pelo sistema.
 
 Exemplo:
 
@@ -227,22 +245,33 @@ O número exato poderá ser diferente.
 
 ## Se o Vagrant não estiver instalado
 
-Acesse a página oficial do Vagrant:
+Acesse a página oficial:
+
+[Instalação do Vagrant](https://developer.hashicorp.com/vagrant/install)
+
+Escolha:
 
 ```text
-developer.hashicorp.com/vagrant
+Windows
 ```
 
-Entre na seção de instalação/download.
+e depois selecione a arquitetura correspondente ao seu computador.
 
-Escolha o pacote correspondente ao seu sistema operacional e à arquitetura disponibilizada oficialmente para o seu computador.
+Para um Windows x86 de 64 bits, normalmente utilizaremos:
 
-Faça o download e execute o instalador correspondente.
-...
+```text
+AMD64
+```
 
-> **Arquitetura:** em computadores Windows de 64 bits, selecione a opção `AMD64`.  
-> A opção `i686` corresponde à arquitetura x86 de 32 bits.
-...
+A opção:
+
+```text
+i686
+```
+
+corresponde à versão x86 de 32 bits.
+
+Faça o download do instalador adequado e execute-o.
 
 Depois da instalação, feche o PowerShell e abra novamente.
 
@@ -254,7 +283,7 @@ vagrant --version
 
 Se uma versão for apresentada, a instalação foi reconhecida pelo sistema.
 
-Somente prossiga quando esse comando estiver funcionando.
+Somente prossiga quando o comando `vagrant` estiver funcionando.
 
 ---
 
@@ -280,15 +309,11 @@ O número exato poderá ser diferente.
 
 ## Se o Git não estiver instalado
 
-Acesse o site oficial do Git:
+Acesse a página oficial:
 
-```text
-git-scm.com
-```
+[Download do Git](https://git-scm.com/downloads)
 
-Entre na área de downloads.
-
-Escolha o instalador correspondente ao seu sistema operacional e à arquitetura suportada pelo computador.
+Escolha o instalador correspondente ao sistema operacional e à arquitetura suportada pelo seu computador.
 
 Faça o download e execute o instalador.
 
@@ -300,7 +325,7 @@ Execute:
 git --version
 ```
 
-Se a versão do Git for apresentada, a instalação foi concluída e reconhecida pelo sistema.
+Se uma versão for apresentada, o Git foi instalado e reconhecido corretamente.
 
 ---
 
@@ -314,19 +339,21 @@ Vagrant    → instalado e funcionando
 Git        → instalado e funcionando
 ```
 
-No PowerShell, podemos confirmar novamente:
+Podemos confirmar novamente o Vagrant:
 
 ```powershell
 vagrant --version
 ```
 
-e:
+E o Git:
 
 ```powershell
 git --version
 ```
 
-Se essas verificações funcionarem e o VirtualBox abrir normalmente, podemos continuar.
+Também confirme que o VirtualBox abre normalmente.
+
+Com as três ferramentas funcionando, podemos seguir para a verificação da rede.
 
 ---
 
@@ -334,7 +361,7 @@ Se essas verificações funcionarem e o VirtualBox abrir normalmente, podemos co
 
 Antes de criar as máquinas virtuais, precisamos verificar a rede utilizada pelo laboratório.
 
-O laboratório utiliza a rede privada:
+Nosso laboratório utiliza:
 
 ```text
 192.168.56.0/24
@@ -347,21 +374,48 @@ ubuntu-linux → 192.168.56.10
 oracle-linux → 192.168.56.11
 ```
 
-No PowerShell, execute:
+Primeiro execute:
 
 ```powershell
 ipconfig
 ```
 
-Observe as interfaces de rede existentes no computador.
+Observe os endereços IPv4 e as interfaces existentes no computador.
 
-Depois execute:
+Também podemos utilizar:
+
+```powershell
+Get-NetIPAddress -AddressFamily IPv4 | Format-Table InterfaceAlias,IPAddress,PrefixLength
+```
+
+Observe principalmente:
+
+```text
+IPAddress
+PrefixLength
+```
+
+Por exemplo, uma rede:
+
+```text
+192.168.18.0/24
+```
+
+é diferente da rede utilizada pelo laboratório:
+
+```text
+192.168.56.0/24
+```
+
+Nesse exemplo, não existe conflito entre as duas redes.
+
+Agora consulte a tabela de rotas:
 
 ```powershell
 route print
 ```
 
-Observe se já existe alguma rede ou rota utilizando:
+Procure por uma rota utilizando:
 
 ```text
 192.168.56.0
@@ -383,29 +437,37 @@ Isso corresponde à rede:
 
 # 9. Interpretar a verificação da rede
 
-Encontrar um endereço `192.168.56.x` não significa automaticamente que exista um problema.
+Encontrar um endereço:
 
-O próprio VirtualBox pode possuir uma interface de rede privada relacionada ao seu ambiente de virtualização.
+```text
+192.168.56.x
+```
 
-Devemos investigar principalmente se a rede:
+não significa automaticamente que existe um problema.
+
+O próprio VirtualBox pode possuir uma interface Host-Only relacionada ao ambiente de virtualização utilizando essa faixa.
+
+Devemos investigar principalmente se:
 
 ```text
 192.168.56.0/24
 ```
 
-já estiver sendo utilizada por outra infraestrutura, por exemplo:
+estiver sendo utilizada por outra infraestrutura, por exemplo:
 
-- Wi-Fi;
-- Ethernet;
+- rede Wi-Fi;
+- rede Ethernet;
 - VPN;
 - outro software de virtualização;
-- outra rede configurada no computador.
+- outra rede ou rota configurada no computador.
 
 Se não houver conflito, continue normalmente.
 
 Se houver conflito, anote essa informação.
 
-Mais adiante, depois de obtermos o `Vagrantfile`, vamos alterar a rede antes de executar `vagrant up`.
+Ainda não altere nada no VirtualBox.
+
+Depois de obtermos o `Vagrantfile`, poderemos alterar a rede diretamente nele antes de executar `vagrant up`.
 
 ---
 
@@ -415,42 +477,83 @@ Agora que o computador está preparado, vamos acessar o repositório onde estão
 
 Acesse:
 
+[Laboratório Linux com Vagrant](https://github.com/MoissesPinheiro/laboratorio-linux-vagrant)
+
+Esse endereço abre a página do projeto no GitHub.
+
+Na página do repositório, clique em:
+
 ```text
-https://github.com/MoissesPinheiro/laboratorio-linux-vagrant
+Code
+```
+
+Depois selecione:
+
+```text
+HTTPS
+```
+
+e copie o endereço apresentado pelo GitHub.
+
+O endereço utilizado para clonagem deverá ser:
+
+```text
+https://github.com/MoissesPinheiro/laboratorio-linux-vagrant.git
+```
+
+Esse endereço será utilizado posteriormente com o comando:
+
+```text
+git clone
+```
+
+> **Importante:** nesta etapa ainda não estamos clonando o repositório.
+>
+> Estamos apenas acessando a página do projeto e copiando o endereço HTTPS que será utilizado pelo Git.
+
+---
 
 # 11. Escolher onde armazenar o laboratório
 
-No PowerShell, navegue até o diretório onde deseja armazenar o projeto.
+Agora escolha em qual diretório do computador deseja armazenar o projeto.
 
-Por exemplo, para utilizar o diretório do seu usuário:
+Por exemplo, podemos utilizar o diretório do usuário atual:
 
 ```powershell
 cd $HOME
 ```
 
-Confira o local atual:
+Confira em qual diretório você está:
 
 ```powershell
 Get-Location
 ```
 
+O projeto será criado dentro do diretório escolhido.
+
 ---
 
 # 12. Clonar o repositório
 
-Utilize o endereço copiado anteriormente no GitHub.
+Agora vamos utilizar o Git para copiar o projeto do GitHub para o computador.
 
-Formato:
+Execute:
 
 ```powershell
-git clone URL_COPIADA_DO_GITHUB
+git clone https://github.com/MoissesPinheiro/laboratorio-linux-vagrant.git
 ```
 
-O comando `git clone` não instala o VirtualBox, o Vagrant ou as máquinas virtuais.
+O comando:
 
-Ele apenas copia os arquivos do projeto armazenados no GitHub para o computador.
+```text
+git clone
+```
 
-Após a clonagem, deverá existir um diretório chamado:
+não instala o VirtualBox, não instala o Vagrant e não cria máquinas virtuais.
+
+Ele apenas copia para o computador os arquivos armazenados no repositório do GitHub.
+
+Após a clonagem, deverá ser criado o diretório:
 
 ```text
 laboratorio-linux-vagrant
@@ -458,7 +561,7 @@ laboratorio-linux-vagrant
 
 ---
 
-# 13. Entrar no diretório do projeto
+# 13. Entrar no diretório do laboratório
 
 Execute:
 
@@ -466,13 +569,13 @@ Execute:
 cd laboratorio-linux-vagrant
 ```
 
-Confira:
+Confira onde você está:
 
 ```powershell
 Get-Location
 ```
 
-Depois liste os arquivos:
+Agora liste os arquivos:
 
 ```powershell
 Get-ChildItem
@@ -485,7 +588,7 @@ README.md
 Vagrantfile
 ```
 
-A partir deste ponto, os comandos do Vagrant relacionados a este laboratório deverão ser executados dentro desse diretório.
+A partir deste momento, os comandos do Vagrant relacionados a este laboratório deverão ser executados dentro do diretório onde está localizado o `Vagrantfile`.
 
 ---
 
@@ -497,18 +600,25 @@ Antes de criar qualquer máquina virtual, visualize o conteúdo do arquivo:
 Get-Content .\Vagrantfile
 ```
 
-Devemos encontrar as definições das máquinas:
+Devemos encontrar as definições das duas máquinas:
 
 ```text
 ubuntu-linux
 oracle-linux
 ```
 
-Também encontraremos os endereços:
+Também encontraremos os endereços configurados:
 
 ```text
 192.168.56.10
 192.168.56.11
+```
+
+E os recursos definidos para cada máquina:
+
+```text
+2 vCPUs
+2048 MB de RAM
 ```
 
 ---
@@ -537,22 +647,38 @@ Por exemplo:
 192.168.57.0/24
 ```
 
-Os endereços poderiam ficar:
+Os endereços poderiam ser alterados para:
 
 ```text
 ubuntu-linux → 192.168.57.10
 oracle-linux → 192.168.57.11
 ```
 
-As linhas correspondentes do `Vagrantfile` deverão ser alteradas para a nova rede.
+No `Vagrantfile`, as linhas correspondentes seriam alteradas para:
+
+```ruby
+ubuntu.vm.network "private_network", ip: "192.168.57.10"
+```
+
+e:
+
+```ruby
+oracle.vm.network "private_network", ip: "192.168.57.11"
+```
 
 Salve o arquivo.
 
-> Não altere essa configuração manualmente dentro das máquinas Linux ou diretamente na interface do VirtualBox.
+> Não é recomendado alterar manualmente essa configuração diretamente dentro do VirtualBox ou dentro das máquinas Linux.
 >
 > Neste laboratório, o `Vagrantfile` deve permanecer como a fonte de configuração das máquinas.
 
-Se não houver conflito com a rede original, nenhuma alteração será necessária.
+Se não existir conflito com a rede original:
+
+```text
+192.168.56.0/24
+```
+
+não faça nenhuma alteração.
 
 ---
 
@@ -564,9 +690,9 @@ Antes de criar as máquinas, execute:
 vagrant validate
 ```
 
-Esse comando verifica a configuração do `Vagrantfile`.
+Esse comando verifica se a configuração do `Vagrantfile` pode ser interpretada pelo Vagrant.
 
-Se o Vagrant informar que a configuração é válida, podemos continuar.
+Se a configuração for válida, o Vagrant deverá informar que não encontrou problemas.
 
 Se algum erro for apresentado, não execute `vagrant up` ainda.
 
@@ -574,7 +700,7 @@ Primeiro corrija o problema indicado.
 
 ---
 
-# 17. Verificar o estado inicial
+# 17. Verificar o estado inicial do laboratório
 
 Execute:
 
@@ -582,9 +708,9 @@ Execute:
 vagrant status
 ```
 
-Como as máquinas ainda não foram criadas neste computador, elas não deverão aparecer em execução.
+Como as máquinas ainda não foram criadas neste computador, elas não deverão estar em execução.
 
-Esse comando permite verificar o estado atual do ambiente conhecido pelo Vagrant.
+Esse comando permite consultar o estado das máquinas conhecidas pelo projeto Vagrant.
 
 ---
 
@@ -598,18 +724,24 @@ Execute:
 vagrant up --provider=virtualbox
 ```
 
-O Vagrant utilizará as definições presentes no `Vagrantfile`.
+O Vagrant irá ler o arquivo:
 
-Durante o primeiro `vagrant up`, ele poderá precisar obter as imagens base necessárias para criar as máquinas.
+```text
+Vagrantfile
+```
 
-Depois utilizará o VirtualBox para criar e configurar:
+e utilizará o VirtualBox como provedor de virtualização.
+
+Durante a primeira execução, o Vagrant poderá precisar baixar as boxes utilizadas como base para as máquinas virtuais.
+
+Depois ele realizará a criação e configuração de:
 
 ```text
 ubuntu-linux
 oracle-linux
 ```
 
-A primeira execução poderá demorar alguns minutos.
+A primeira execução poderá levar alguns minutos, principalmente durante o download das boxes.
 
 Aguarde até o processo terminar.
 
@@ -617,7 +749,7 @@ Aguarde até o processo terminar.
 
 # 19. Verificar o estado das máquinas
 
-Após a conclusão do `vagrant up`, execute:
+Depois que o `vagrant up` terminar, execute:
 
 ```powershell
 vagrant status
@@ -638,11 +770,23 @@ em execução.
 
 Abra o VirtualBox.
 
-As máquinas criadas pelo Vagrant deverão aparecer na interface.
+As máquinas criadas pelo Vagrant deverão aparecer na interface do VirtualBox.
 
-Não é necessário criar essas máquinas manualmente no VirtualBox.
+Não é necessário criar essas máquinas manualmente.
 
-Neste laboratório, o Vagrant utiliza o VirtualBox como provedor para criar e gerenciar as máquinas definidas no `Vagrantfile`.
+A relação é:
+
+```text
+Vagrantfile
+      ↓
+Vagrant
+      ↓
+VirtualBox
+      ↓
+Máquinas virtuais
+```
+
+O Vagrant lê a configuração definida no projeto e utiliza o VirtualBox para criar e controlar as máquinas virtuais.
 
 ---
 
@@ -666,21 +810,21 @@ Verifique o sistema operacional:
 cat /etc/os-release
 ```
 
-Verifique as interfaces e endereços:
+Verifique as interfaces e endereços IP:
 
 ```bash
 ip -brief address
 ```
 
-Na configuração original do laboratório, esperamos encontrar o endereço:
+Na configuração original do laboratório esperamos encontrar:
 
 ```text
 192.168.56.10
 ```
 
-Se você alterou a rede anteriormente, utilize como referência o endereço configurado no seu `Vagrantfile`.
+Se você alterou a rede devido a algum conflito, utilize como referência o endereço definido no seu `Vagrantfile`.
 
-Para sair da máquina e voltar ao PowerShell:
+Para sair da máquina e retornar ao PowerShell:
 
 ```bash
 exit
@@ -708,19 +852,19 @@ Confira o sistema operacional:
 cat /etc/os-release
 ```
 
-Confira a rede:
+Confira as interfaces:
 
 ```bash
 ip -brief address
 ```
 
-Na configuração original esperamos:
+Na configuração original esperamos encontrar:
 
 ```text
 192.168.56.11
 ```
 
-Para retornar ao Windows:
+Para sair:
 
 ```bash
 exit
@@ -742,7 +886,7 @@ Depois teste o Oracle Linux:
 Test-Connection 192.168.56.11 -Count 2
 ```
 
-Caso tenha alterado a rede do laboratório, substitua pelos endereços configurados no seu `Vagrantfile`.
+Caso tenha alterado a rede do laboratório, substitua esses endereços pelos IPs definidos no seu `Vagrantfile`.
 
 ---
 
@@ -754,7 +898,7 @@ Entre no Ubuntu:
 vagrant ssh ubuntu-linux
 ```
 
-Dentro do Ubuntu, teste o Oracle Linux:
+Dentro do Ubuntu, teste a comunicação com o Oracle Linux:
 
 ```bash
 ping -c 4 192.168.56.11
@@ -778,19 +922,19 @@ Quando terminar os estudos, execute:
 vagrant halt
 ```
 
-Depois verifique:
+Depois confira:
 
 ```powershell
 vagrant status
 ```
 
-As máquinas continuarão existentes, porém desligadas.
+As máquinas continuarão existentes no VirtualBox, porém desligadas.
 
 ---
 
-# 26. Iniciar novamente
+# 26. Iniciar novamente o laboratório
 
-Em outro momento, abra o PowerShell e entre novamente no diretório do projeto.
+Quando quiser voltar aos estudos, abra o PowerShell e entre novamente no diretório do projeto.
 
 Exemplo:
 
@@ -806,7 +950,7 @@ Depois execute:
 vagrant up
 ```
 
-E confira:
+Confira:
 
 ```powershell
 vagrant status
@@ -816,7 +960,7 @@ vagrant status
 
 # 27. Suspender e retomar as máquinas
 
-Para suspender:
+Para suspender as máquinas:
 
 ```powershell
 vagrant suspend
@@ -832,7 +976,7 @@ vagrant resume
 
 # 28. Aplicar alterações do Vagrantfile
 
-Se uma máquina já tiver sido criada e você modificar uma configuração no `Vagrantfile`, poderá ser necessário recarregá-la.
+Se as máquinas já tiverem sido criadas e uma configuração do `Vagrantfile` for alterada, poderá ser necessário recarregar o ambiente.
 
 Execute:
 
@@ -840,17 +984,19 @@ Execute:
 vagrant reload
 ```
 
+Esse comando reinicia as máquinas e permite ao Vagrant aplicar configurações alteradas.
+
 ---
 
 # 29. Remover as máquinas do laboratório
 
-Quando realmente quiser excluir as máquinas virtuais criadas pelo Vagrant:
+Quando realmente quiser excluir as máquinas virtuais criadas pelo projeto:
 
 ```powershell
 vagrant destroy
 ```
 
-O Vagrant solicitará confirmação.
+O Vagrant solicitará confirmação antes da remoção.
 
 Também existe:
 
@@ -858,11 +1004,21 @@ Também existe:
 vagrant destroy -f
 ```
 
-A opção `-f` executa a remoção sem solicitar confirmação.
+A opção:
+
+```text
+-f
+```
+
+executa a remoção sem solicitar confirmação.
 
 > **Atenção:** `vagrant destroy` remove as máquinas virtuais e os dados armazenados nelas.
 >
 > Não confunda `destroy` com `halt`.
+>
+> `halt` apenas desliga as máquinas.
+>
+> `destroy` remove as máquinas.
 
 ---
 
@@ -878,12 +1034,12 @@ A opção `-f` executa a remoção sem solicitar confirmação.
 | `vagrant halt` | Desliga as máquinas |
 | `vagrant suspend` | Suspende as máquinas |
 | `vagrant resume` | Retoma as máquinas suspensas |
-| `vagrant reload` | Reinicia as máquinas e aplica alterações do `Vagrantfile` |
+| `vagrant reload` | Reinicia as máquinas aplicando alterações do `Vagrantfile` |
 | `vagrant destroy` | Remove as máquinas virtuais |
 
 ---
 
-# Fluxo resumido
+# Fluxo completo do laboratório
 
 ```text
 Verificar Windows e arquitetura
@@ -910,9 +1066,11 @@ Validar Git
         ↓
 Verificar rede 192.168.56.0/24
         ↓
-Abrir repositório no GitHub
+Acessar o repositório no GitHub
         ↓
-Copiar URL do repositório
+Copiar URL HTTPS
+        ↓
+Escolher diretório local
         ↓
 git clone
         ↓
@@ -930,6 +1088,8 @@ vagrant up --provider=virtualbox
         ↓
 vagrant status
         ↓
+Conferir máquinas no VirtualBox
+        ↓
 vagrant ssh ubuntu-linux
         ↓
 Validar Ubuntu
@@ -938,7 +1098,7 @@ vagrant ssh oracle-linux
         ↓
 Validar Oracle Linux
         ↓
-Testar comunicação
+Testar comunicação de rede
         ↓
 vagrant halt
 ```
@@ -947,14 +1107,16 @@ vagrant halt
 
 # Objetivo concluído
 
-Ao finalizar todas as etapas, teremos o seguinte laboratório em funcionamento:
+Ao finalizar todas as etapas, teremos o seguinte laboratório:
 
 ```text
 Windows
    │
-   ├── VirtualBox
+   ├── Git
    │
-   └── Vagrant
+   ├── Vagrant
+   │
+   └── VirtualBox
           │
           ├── ubuntu-linux
           │      Ubuntu 24.04 LTS
