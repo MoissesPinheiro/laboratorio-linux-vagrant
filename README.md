@@ -112,7 +112,9 @@ Se a virtualização estiver desabilitada, ela deverá ser habilitada na BIOS/UE
 
 # 4. Verificar o WinGet
 
-Vamos utilizar o **WinGet** como método principal de instalação das ferramentas no Windows.
+O WinGet será utilizado para localizar e instalar algumas das ferramentas necessárias para o laboratório.
+
+Primeiro, verifique se ele já está disponível no Windows.
 
 Execute:
 
@@ -120,17 +122,57 @@ Execute:
 winget --version
 ```
 
-Se uma versão for apresentada, podemos continuar.
-
-Exemplo:
+Se uma versão for apresentada, por exemplo:
 
 ```text
 v1.x.x
 ```
 
-Caso o comando `winget` não esteja disponível, utilize os instaladores disponibilizados nos sites oficiais das ferramentas.
+o WinGet já está instalado e você pode seguir para a próxima etapa.
 
----
+## Se o comando winget não for encontrado
+
+O WinGet faz parte do aplicativo **App Installer** do Windows.
+
+Em versões modernas do Windows 10 e no Windows 11, ele normalmente já está disponível ou pode ser instalado pela Microsoft Store.
+
+Abra a Microsoft Store e procure por:
+
+```text
+App Installer
+```
+
+Instale ou atualize o aplicativo publicado pela Microsoft.
+
+Após a instalação, feche o PowerShell e abra novamente.
+
+Execute novamente:
+
+```powershell
+winget --version
+```
+
+Se uma versão for apresentada, o WinGet está pronto para uso.
+
+## Caso o App Installer já esteja instalado, mas o winget ainda não apareça
+
+Em alguns casos, o componente pode precisar ser registrado novamente no Windows.
+
+Abra o PowerShell e execute:
+
+```powershell
+Add-AppxPackage -RegisterByFamilyName -MainPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe
+```
+
+Depois, feche o PowerShell e abra novamente.
+
+Teste:
+
+```powershell
+winget --version
+```
+
+Somente prossiga para a instalação do VirtualBox quando o comando `winget` estiver funcionando.
 
 # 5. Instalar o VirtualBox
 
