@@ -220,25 +220,104 @@ Se o comando não for reconhecido imediatamente após a instalação, feche e ab
 
 # 9. Instalar o Git
 
-Pesquise o pacote:
+Antes de instalar o Git, vamos primeiro localizar o pacote no catálogo do WinGet.
+
+Execute:
 
 ```powershell
-winget search Git.Git
+winget search --name Git --source winget
 ```
 
-Instale:
+Esse comando apenas realiza uma pesquisa.
+
+Nenhum programa é instalado nesta etapa.
+
+O objetivo é descobrir qual é o **ID do pacote** utilizado pelo WinGet para identificar o Git.
+
+O resultado será apresentado em formato de tabela, com informações semelhantes a:
+
+```text
+Name    Id       Version    Source
+Git     Git.Git  ...        winget
+```
+
+Observe principalmente a coluna:
+
+```text
+Id
+```
+
+No exemplo acima, o ID encontrado foi:
+
+```text
+Git.Git
+```
+
+Esse valor será utilizado no próximo comando.
+
+Agora monte o comando de instalação utilizando exatamente o ID retornado pela pesquisa.
+
+Formato do comando:
+
+```powershell
+winget install --id ID_ENCONTRADO -e --source winget
+```
+
+Substitua:
+
+```text
+ID_ENCONTRADO
+```
+
+pelo valor apresentado na coluna `Id`.
+
+No exemplo anterior, como o ID encontrado foi:
+
+```text
+Git.Git
+```
+
+o comando ficará:
 
 ```powershell
 winget install --id Git.Git -e --source winget
 ```
 
-Aguarde a instalação.
+Nesse comando:
 
-Depois, feche e abra novamente o PowerShell.
+```text
+winget install
+```
 
----
+solicita a instalação de um programa.
 
-# 10. Verificar o Git
+```text
+--id Git.Git
+```
+
+informa que o programa deve ser localizado pelo campo `Id`, utilizando o valor `Git.Git`.
+
+```text
+-e
+```
+
+é a forma curta de `--exact`.
+
+Isso significa que o WinGet deverá encontrar uma correspondência exata para o ID informado.
+
+```text
+--source winget
+```
+
+informa que a pesquisa e a instalação devem utilizar a fonte chamada `winget`.
+
+Aguarde a conclusão da instalação.
+
+Depois, feche o PowerShell e abra novamente.
+
+# 10. Verificar a instalação do Git
+
+Agora vamos verificar se o Git foi instalado corretamente.
 
 Execute:
 
@@ -246,13 +325,17 @@ Execute:
 git --version
 ```
 
-O terminal deverá apresentar a versão instalada.
+Se a instalação foi concluída corretamente, o terminal deverá apresentar a versão instalada.
 
 Exemplo:
 
 ```text
 git version 2.x.x
 ```
+
+O número exato da versão poderá ser diferente, pois novas versões podem ser disponibilizadas.
+
+Se o comando apresentar a versão do Git, a instalação foi concluída com sucesso.
 
 Neste momento devemos ter:
 
