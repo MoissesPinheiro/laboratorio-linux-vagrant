@@ -119,3 +119,41 @@ Esta primeira versão do laboratório está sendo preparada e testada para:
 - VirtualBox como provedor de virtualização.
 
 O suporte a outras plataformas e arquiteturas poderá ser adicionado posteriormente.
+
+## Importante sobre a rede do laboratório
+
+Este laboratório utiliza a rede privada `192.168.56.0/24`.
+
+As máquinas virtuais são configuradas com os seguintes endereços:
+
+- `ubuntu-linux`: `192.168.56.10`
+- `oracle-linux`: `192.168.56.11`
+
+Antes de executar o comando `vagrant up` pela primeira vez, é recomendado verificar se essa faixa de rede já está sendo utilizada no computador host por outra interface, VPN ou ambiente de virtualização.
+
+No Windows, podem ser utilizados os comandos:
+
+```powershell
+ipconfig
+```
+
+e:
+
+```powershell
+route print
+```
+
+Caso a rede `192.168.56.0/24` já esteja sendo utilizada, altere os endereços IP diretamente no arquivo `Vagrantfile`.
+
+Exemplo de outra faixa:
+
+- `ubuntu-linux`: `192.168.57.10`
+- `oracle-linux`: `192.168.57.11`
+
+Após a alteração, salve o arquivo e execute normalmente:
+
+```bash
+vagrant up
+```
+
+Não é recomendado alterar manualmente a rede diretamente no VirtualBox ou dentro das máquinas virtuais, pois o `Vagrantfile` deve permanecer como a fonte de configuração do laboratório.
