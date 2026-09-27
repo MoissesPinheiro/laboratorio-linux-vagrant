@@ -159,25 +159,130 @@ winget --version
 ```
 
 Somente continue quando o comando `winget` estiver funcionando.
+
 # 5. Instalar o VirtualBox
 
-Antes da instalação, podemos pesquisar o pacote:
+Antes de instalar o VirtualBox, vamos localizar o pacote no catálogo do WinGet.
+
+Execute:
 
 ```powershell
-winget search VirtualBox
+winget search --name VirtualBox --source winget
 ```
 
-Para instalar:
+Esse comando apenas realiza uma pesquisa.
+
+Nenhum programa é instalado nesta etapa.
+
+O objetivo é localizar o VirtualBox no catálogo do WinGet e descobrir o **ID do pacote** utilizado para identificá-lo.
+
+O resultado será apresentado em formato de tabela, contendo informações como:
+
+```text
+Name          Id                 Version    Source
+Oracle VM     Oracle.VirtualBox  ...        winget
+VirtualBox
+```
+
+A aparência exata do resultado e o número da versão podem variar.
+
+Observe principalmente a coluna:
+
+```text
+Id
+```
+
+Para o pacote do VirtualBox utilizado neste laboratório, esperamos encontrar:
+
+```text
+Oracle.VirtualBox
+```
+
+Esse valor é o identificador do pacote no catálogo do WinGet.
+
+Agora vamos utilizar o ID encontrado para montar o comando de instalação.
+
+Formato:
+
+```powershell
+winget install --id ID_ENCONTRADO -e --source winget
+```
+
+Como o ID identificado para o VirtualBox é:
+
+```text
+Oracle.VirtualBox
+```
+
+o comando fica:
 
 ```powershell
 winget install --id Oracle.VirtualBox -e --source winget
 ```
 
-Durante a instalação, o Windows poderá solicitar confirmação de administrador.
+Nesse comando:
+
+```text
+winget install
+```
+
+solicita ao WinGet a instalação de um programa.
+
+```text
+--id Oracle.VirtualBox
+```
+
+informa que o programa deve ser localizado pelo campo `Id`, utilizando o valor `Oracle.VirtualBox`.
+
+```text
+-e
+```
+
+é a forma curta de:
+
+```text
+--exact
+```
+
+Isso determina que o WinGet deve utilizar uma correspondência exata para o ID informado.
+
+```text
+--source winget
+```
+
+determina que o pacote deve ser localizado na fonte chamada `winget`.
+
+Durante a instalação, o Windows poderá solicitar permissão de administrador.
 
 Aguarde a conclusão do processo.
 
 ---
+
+# 6. Verificar a instalação do VirtualBox
+
+Depois da instalação, abra o VirtualBox pelo menu Iniciar do Windows.
+
+Confirme se a interface do programa abre normalmente.
+
+Também podemos verificar a versão instalada pelo PowerShell.
+
+Execute:
+
+```powershell
+& "$env:ProgramFiles\Oracle\VirtualBox\VBoxManage.exe" --version
+```
+
+Se o VirtualBox estiver instalado corretamente nesse local, o comando deverá retornar o número da versão instalada.
+
+Exemplo:
+
+```text
+7.x.x
+```
+
+O número exato poderá ser diferente, pois novas versões do VirtualBox podem ser disponibilizadas.
+
+Se a interface abrir normalmente e o comando apresentar a versão, podemos considerar a instalação validada.
 
 # 6. Verificar o VirtualBox
 
