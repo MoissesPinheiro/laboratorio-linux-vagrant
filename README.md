@@ -411,25 +411,12 @@ Mais adiante, depois de obtermos o `Vagrantfile`, vamos alterar a rede antes de 
 
 # 10. Obter o laboratório no GitHub
 
-Agora que o computador está preparado, vamos obter os arquivos do laboratório.
+Agora que o computador está preparado, vamos acessar o repositório onde estão armazenados os arquivos do laboratório.
 
-Abra no GitHub o repositório:
-
-```text
-MoissesPinheiro/laboratorio-linux-vagrant
-```
-
-Na página do repositório:
+Acesse:
 
 ```text
-Code
-→ HTTPS
-→ Copy URL
-```
-
-Copie o endereço apresentado pelo GitHub.
-
----
+https://github.com/MoissesPinheiro/laboratorio-linux-vagrant
 
 # 11. Escolher onde armazenar o laboratório
 
